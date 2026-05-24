@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Public and private profile data for a user.",
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "level": { "type": "number", "minimum": 1 },
+        "xp": { "type": "number", "minimum": 0 },
+        "coins": { "type": "number", "minimum": 0 },
+        "isAdmin": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "timestamp" },
+        "updatedAt": { "type": "string", "format": "timestamp" }
+      },
+      "required": ["displayName", "level", "xp", "coins", "createdAt", "updatedAt"]
+    },
+    "Game": {
+      "title": "Game",
+      "description": "Details about an HTML5 game.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "image": { "type": "string" },
+        "category": { "type": "string" },
+        "playersActive": { "type": "number", "minimum": 0 },
+        "rating": { "type": "number" },
+        "url": { "type": "string" },
+        "developer": { "type": "string" },
+        "description": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "timestamp" },
+        "updatedAt": { "type": "string", "format": "timestamp" }
+      },
+      "required": ["title", "category", "url", "active", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profiles. Contains stats, coins, and admin status."
+    },
+    "games/{gameId}": {
+      "schema": { "$ref": "Game" },
+      "description": "Database of available games added via admin panel."
+    }
+  }
+}

@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-neon-purple: #9d4edd;
+  --color-neon-blue: #00b4d8;
+  --color-neon-pink: #f72585;
+  --color-dark-bg: #0b0914;
+  --color-dark-panel: rgba(20, 16, 30, 0.75);
+  --color-dark-border: rgba(255, 255, 255, 0.06);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-gray-100 font-sans overflow-x-hidden;
+    background-image: 
+      radial-gradient(circle at top right, rgba(157, 78, 221, 0.15), transparent 40%),
+      radial-gradient(circle at bottom left, rgba(0, 180, 216, 0.12), transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(247, 37, 133, 0.05), transparent 60%);
+    background-attachment: fixed;
+    background-color: #0b0914;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--color-neon-purple), var(--color-neon-blue));
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, var(--color-neon-pink), var(--color-neon-purple));
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-dark-panel backdrop-blur-3xl border border-dark-border rounded-2xl;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.8), inset 0 1px 0 0 rgba(255,255,255,0.05);
+  }
+  
+  .neon-text-blue {
+    text-shadow: 0 0 15px rgba(0, 180, 216, 0.6), 0 0 30px rgba(0, 180, 216, 0.4);
+  }
+  
+  .neon-text-purple {
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.6), 0 0 30px rgba(157, 78, 221, 0.4);
+  }
+
+  .neon-border-blue {
+    box-shadow: 0 0 10px rgba(0, 180, 216, 0.4) inset, 0 0 20px rgba(0, 180, 216, 0.4);
+    border-color: rgba(0, 180, 216, 0.8);
+  }
+
+  .neon-border-purple {
+    box-shadow: 0 0 10px rgba(157, 78, 221, 0.4) inset, 0 0 20px rgba(157, 78, 221, 0.4);
+    border-color: rgba(157, 78, 221, 0.8);
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @keyframes fadeOut {
+    0% { opacity: 1; visibility: visible; }
+    100% { opacity: 0; visibility: hidden; pointer-events: none; }
+  }
+}
